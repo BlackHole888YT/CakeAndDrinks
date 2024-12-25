@@ -7,18 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".drinks.DrinksActivity">
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/drinks_fr"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <FrameLayout
-        android:id="@+id/fragment_container1"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints" />
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph_drinks"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

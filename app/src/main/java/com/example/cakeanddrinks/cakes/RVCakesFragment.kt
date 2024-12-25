@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.cakeanddrinks.Key
 import com.example.cakeanddrinks.R
 import com.example.cakeanddrinks.databinding.FragmentRVCakesBinding
@@ -32,11 +33,15 @@ class RVCakesFragment : Fragment() {
 
     private fun initRV() {
         cakesAdapter = CakesAdapter(cakesList){
-            val bundle = Bundle()
-            bundle.putSerializable(Key.CAKE.toString(), cakesList[it])
-            val detailCakeFragment = DetailCakeFragment()
-            detailCakeFragment.arguments = bundle
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, detailCakeFragment).addToBackStack(null).commit()
+            findNavController().navigate(RVCakesFragmentDirections.actionRVCakesFragmentToDetailCakeFragment(
+                image = cakesList[it].image,
+                description = cakesList[it].description,
+                price = cakesList[it].price,
+                name = cakesList[it].name,
+            ))
+
+            //findNavController().navigate(R.id.action_RVCakesFragment_to_detailCakeFragment, bundle)
+            //requireActivity().supportFragmentManager.beginTransaction().replace(R.id.cakes_fr, detailCakeFragment).addToBackStack(null).commit()
         }
         binding.rvCakes.adapter = cakesAdapter
     }

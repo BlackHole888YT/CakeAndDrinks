@@ -6,6 +6,16 @@
     android:background="@drawable/drink_image_not_load"
     tools:context=".drinks.DetailDrinkFragment">
 
+    <Button
+        android:id="@+id/back_drink_btn"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="56dp"
+        android:layout_height="40dp"
+        android:background="@drawable/back_arrow_svgrepo_com"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/drinkImage"
         android:layout_width="160dp"

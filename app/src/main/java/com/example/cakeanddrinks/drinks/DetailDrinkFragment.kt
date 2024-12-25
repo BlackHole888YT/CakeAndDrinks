@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.cakeanddrinks.Key
 import com.example.cakeanddrinks.databinding.FragmentDetailDrinkBinding
@@ -28,21 +29,25 @@ class DetailDrinkFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.callButton.setOnClickListener(View.OnClickListener {
-            val phoneNumber = "tel:0555194109"
+            val phoneNumber = "tel:555000000"
             val phoneIntent = Intent(Intent.ACTION_CALL)
             phoneIntent.data = Uri.parse(phoneNumber)
             startActivity(phoneIntent)
         })
+
         binding.orderButton.setOnClickListener(View.OnClickListener {
-            val url = "https://api.whatsapp.com/send?phone=+996555194109"
+            val url = "https://api.whatsapp.com/send?phone=+996555000000"
             val i = Intent(Intent.ACTION_VIEW)
             i.setData(Uri.parse(url))
             startActivity(i)
+
         })
 
-
         if (arguments != null){
-            val args = requireArguments().getSerializable(Key.DRINK.toString()) as Drinks
+            binding.backDrinkBtn.setOnClickListener(){
+                findNavController().navigateUp()
+            }
+            val args = DetailDrinkFragmentArgs.fromBundle(requireArguments())
             binding.drinkName.text = args.name
             binding.drinkDesc.text = args.description
             binding.drinkPrice.text = args.price

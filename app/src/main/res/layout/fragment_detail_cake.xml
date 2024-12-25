@@ -8,6 +8,16 @@
     android:background="@drawable/cake_image_not_load"
     tools:context=".cakes.DetailCakeFragment">
 
+    <Button
+        android:id="@+id/back_cake_btn"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="56dp"
+        android:layout_height="40dp"
+        android:background="@drawable/back_arrow_svgrepo_com"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/cakeImage"
         android:layout_width="160dp"

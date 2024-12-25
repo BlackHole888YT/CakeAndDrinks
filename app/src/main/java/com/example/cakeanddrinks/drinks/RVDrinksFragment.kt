@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.cakeanddrinks.Key
 import com.example.cakeanddrinks.R
 import com.example.cakeanddrinks.cakes.CakesAdapter
@@ -32,11 +33,14 @@ class RVDrinksFragment : Fragment() {
     }
     private fun initRV() {
         drinksAdapter = DrinksAdapter(drinkList){
-            val bundle = Bundle()
-            bundle.putSerializable(Key.DRINK.toString(), drinkList[it])
-            val detailDrinkFragment = DetailDrinkFragment()
-            detailDrinkFragment.arguments = bundle
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container1, detailDrinkFragment).addToBackStack(null).commit()
+            findNavController().navigate(RVDrinksFragmentDirections.actionRVDrinksFragmentToDetailDrinkFragment2(
+                description = drinkList[it].description,
+                price = drinkList[it].price,
+                name = drinkList[it].name,
+                image = drinkList[it].image,
+            ))
+            //findNavController().navigate(R.id.action_RVDrinksFragment_to_detailDrinkFragment2, bundle)
+            //requireActivity().supportFragmentManager.beginTransaction().replace(R.id.drinks_fr, detailDrinkFragment).addToBackStack(null).commit()
         }
         binding.rvDrinks.adapter = drinksAdapter
     }

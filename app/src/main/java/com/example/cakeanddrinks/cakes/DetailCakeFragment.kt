@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.cakeanddrinks.Key
 import com.example.cakeanddrinks.databinding.FragmentDetailCakeBinding
+import com.example.cakeanddrinks.drinks.DetailDrinkFragmentArgs
 
 
 class DetailCakeFragment : Fragment() {
@@ -28,14 +30,14 @@ class DetailCakeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.callButton.setOnClickListener(View.OnClickListener {
-            val phoneNumber = "tel:0555194109"
+            val phoneNumber = "tel:555000000"
             val phoneIntent = Intent(Intent.ACTION_CALL)
             phoneIntent.data = Uri.parse(phoneNumber)
             startActivity(phoneIntent)
         })
 
         binding.orderButton.setOnClickListener(View.OnClickListener {
-            val url = "https://api.whatsapp.com/send?phone=+996555194109"
+            val url = "https://api.whatsapp.com/send?phone=+996555000000"
             val i = Intent(Intent.ACTION_VIEW)
             i.setData(Uri.parse(url))
             startActivity(i)
@@ -43,7 +45,10 @@ class DetailCakeFragment : Fragment() {
         })
 
         if (arguments != null){
-            val args = requireArguments().getSerializable(Key.CAKE.toString()) as Cakes
+            binding.backCakeBtn.setOnClickListener(){
+                findNavController().navigateUp()
+            }
+            val args = DetailCakeFragmentArgs.fromBundle(requireArguments())
             binding.cakeName.text = args.name
             binding.cakeDesc.text = args.description
             binding.cakePrice.text = args.price
