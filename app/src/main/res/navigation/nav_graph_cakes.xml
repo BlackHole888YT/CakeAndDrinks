@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/RVCakesFragment">
+
+    <fragment
+        android:id="@+id/RVCakesFragment"
+        android:name="com.example.cakeanddrinks.cakes.RVCakesFragment"
+        android:label="fragment_r_v_cakes"
+        tools:layout="@layout/fragment_r_v_cakes" >
+        <action
+            android:id="@+id/action_RVCakesFragment_to_detailCakeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/detailCakeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCakeFragment"
+        android:name="com.example.cakeanddrinks.cakes.DetailCakeFragment"
+        android:label="fragment_detail_cake"
+        tools:layout="@layout/fragment_detail_cake">
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="name" />
+        <argument
+            android:name="image"
+            app:argType="string"
+            android:defaultValue="image" />
+        <argument
+            android:name="price"
+            app:argType="string"
+            android:defaultValue="price" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            android:defaultValue="description" />
+
+    </fragment>
+</navigation>
